@@ -19,47 +19,69 @@
 
     <main class="main-content about-page">
         <section class="about-section">
-            <h1>关于 PaperFinding</h1>
-            <div class="about-content">
-                <div class="about-card">
-                    <h2>系统简介</h2>
-                    <p>PaperFinding 是一个基于PubMed的学术文献检索系统，旨在帮助研究人员和学生快速查找所需的学术论文。</p>
-                </div>
-                
-                <div class="about-card">
-                    <h2>数据来源</h2>
-                    <p>本系统使用 <strong>PubMed</strong> 数据库作为文献来源。PubMed是美国国家医学图书馆(NLM)维护的生物医学文献数据库，包含超过3500万篇生物医学文献。</p>
-                </div>
-                
-                <div class="about-card">
-                    <h2>技术架构</h2>
-                    <ul>
-                        <li><strong>后端</strong>: FastAPI (Python)</li>
-                        <li><strong>前端</strong>: HTML5 + CSS3 + JavaScript</li>
-                        <li><strong>API</strong>: NCBI Entrez E-utilities</li>
+            <h1 class="about-title">关于 PaperFinding 2.0</h1>
+            
+            <div class="about-section-item">
+                <h2 class="section-title">什么是 PaperFinding?</h2>
+                <p class="section-content">
+                    PaperFinding 是一个基于PubMed的学术文献检索系统，旨在帮助生物医学领域的研究人员快速查找所需的学术论文。
+                    我们提供简洁直观的界面，让您轻松访问 PubMed 数据库中的海量文献资源。
+                </p>
+            </div>
+            
+            <div class="about-section-item">
+                <h2 class="section-title">PaperFinding 能帮你做什么？</h2>
+                <p class="section-content">
+                    本系统使用 <strong>PubMed</strong> 数据库作为文献来源。PubMed 是美国国家医学图书馆(NLM)维护的生物医学文献数据库，
+                    包含超过 3500 万篇生物医学文献，涵盖了生命科学领域的广泛研究成果。
+                </p>
+            </div>
+            
+            <div class="about-section-item">
+                <h2 class="section-title">技术架构</h2>
+                <div class="section-content">
+                    <ul class="tech-list">
+                        <li><strong>后端</strong>: FastAPI (Python) - 高性能 Web 框架</li>
+                        <li><strong>前端</strong>: HTML5 + CSS3 + JavaScript - 响应式设计</li>
+                        <li><strong>API</strong>: NCBI Entrez E-utilities - 官方 PubMed 接口</li>
+                        <li><strong>数据库</strong>: PubMed - 全球最大的生物医学文献数据库</li>
                     </ul>
                 </div>
-                
-                <div class="about-card">
-                    <h2>功能特点</h2>
-                    <ul>
-                        <li>关键词快速检索</li>
-                        <li>分页浏览结果</li>
-                        <li>显示文献详细信息（标题、作者、期刊、发表日期）</li>
-                        <li>提供文献摘要</li>
-                        <li>DOI链接跳转</li>
+            </div>
+            
+            <div class="about-section-item">
+                <h2 class="section-title">功能特点</h2>
+                <div class="section-content">
+                    <ul class="feature-list">
+                        <li>🔍 关键词快速检索 - 支持布尔运算符和高级搜索</li>
+                        <li>📄 分页浏览结果 - 每页显示 10 篇文献，支持翻页</li>
+                        <li>📊 时间范围筛选 - 可选择近 5 年、10 年或更早文献</li>
+                        <li>📝 显示文献详细信息（标题、作者、期刊、发表日期）</li>
+                        <li>📋 提供文献摘要 - 帮助快速了解文献内容</li>
+                        <li>🔗 DOI链接跳转 - 直接访问原文来源</li>
                     </ul>
                 </div>
-                
-                <div class="about-card">
-                    <h2>使用说明</h2>
-                    <ol>
-                        <li>在搜索框中输入您感兴趣的研究主题或关键词</li>
-                        <li>点击搜索按钮或按Enter键进行检索</li>
-                        <li>浏览搜索结果，点击文献查看详细信息</li>
-                        <li>使用底部分页按钮浏览更多结果</li>
-                    </ol>
+            </div>
+            
+            <div class="about-section-item">
+                <h2 class="section-title">使用说明</h2>
+                <div class="section-content">
+                    1. 在搜索框中输入您感兴趣的研究主题或关键词<br/>
+                    2. 选择时间范围（可选）<br/>
+                    3. 点击搜索按钮或按Enter键进行检索<br/>
+                    4. 浏览搜索结果，点击文献标题查看详细信息<br/>
+                    5. 使用底部分页按钮浏览更多结果<br/>
                 </div>
+            </div>
+            
+            <div class="about-section-item">
+                <h2 class="section-title">注意事项</h2>
+                <p class="section-content">
+                    - 本系统仅提供文献检索服务，不存储或复制任何文献内容<br/>
+                    - 文献版权归原作者和期刊所有<br/>
+                    - 建议使用稳定的网络连接以获得最佳体验<br/>
+                    - 如需获取全文，请通过DOI链接访问原文<br/>
+                </p>
             </div>
         </section>
     </main>

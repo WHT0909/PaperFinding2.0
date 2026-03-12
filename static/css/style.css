@@ -323,6 +323,104 @@ body {
     color: var(--text-secondary);
 }
 
+/* About Page Styles */
+.about-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.about-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 130%;
+    margin-left: -15%;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 1rem;
+}
+
+.about-section-item {
+    margin-bottom: 2.5rem;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    /* text-transform: uppercase; */
+    position: relative;
+    letter-spacing: 0.5px;
+}
+
+.section-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+}
+
+.section-content {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.tech-list, .feature-list, .usage-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tech-list li, .feature-list li, .usage-list li {
+    margin-bottom: 0.875rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.tech-list li::before, .feature-list li::before {
+    content: '•';
+    color: var(--primary-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    margin-right: 0.5rem;
+}
+
+.usage-list li {
+    counter-increment: step-counter;
+}
+
+.usage-list li::before {
+    content: counter(step-counter);
+    color: white;
+    background-color: var(--primary-color);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    position: absolute;
+    left: 0;
+    margin-right: 0.5rem;
+}
+
 .no-results {
     text-align: center;
     padding: 4rem;
