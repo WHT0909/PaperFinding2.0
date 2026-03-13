@@ -353,7 +353,7 @@ body {
     margin-bottom: 2.5rem;
 }
 
-.section-title {
+.about-section-item .section-title {
     font-size: 1.75rem;
     font-weight: 800;
     color: var(--text-primary);
@@ -646,14 +646,14 @@ body {
     box-sizing: border-box;
 }
 
-.section-title {
+/* .section-title {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 1rem;
-}
+} */
 
 #AI-result-text{
     padding-left: 25px;

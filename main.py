@@ -27,7 +27,7 @@ if DEEPSEEK_API_KEY:
 else:
     llm = None
 
-app = FastAPI(title="PaperFinding API", description="文献检索系统后端API")
+app = FastAPI(title="BioPapers API", description="文献检索系统后端API")
 
 # 添加中间件，在每个特定的路径操作处理每个请求之前运行，也会在返回每个响应之前运行
 app.add_middleware(
