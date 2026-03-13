@@ -450,7 +450,7 @@ body {
 .assistant-container {
     display: flex !important;
     gap: 1.5rem;
-    height: 70vh;
+    min-height: 70vh;
     padding: 1.5rem;
     flex-direction: row !important;
     flex-wrap: nowrap;
@@ -459,8 +459,9 @@ body {
 }
 
 .input-section {
-    width: 40%;
-    min-width: 350px;
+    width: 35%; /* 调整宽度占比，更合理 */
+    min-width: 380px;
+    max-width: 450px; /* 限制最大宽度，避免过宽 */
     background-color: #ffffff;
     padding: 1.5rem;
     border-radius: 12px;
@@ -471,7 +472,7 @@ body {
 }
 
 .response-section {
-    flex: 1;
+    flex: 1; /* 占满剩余宽度 */
     background-color: #ffffff;
     padding: 0;
     border-radius: 12px;
@@ -480,6 +481,7 @@ body {
     flex-direction: column;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
+    min-width: 600px; /* 限制最小宽度，保证回答区体验 */
 }
 
 .input-options {
@@ -508,11 +510,11 @@ body {
 #textInput {
     flex: 1;
     width: 100%;
-    min-height: 150px;
+    min-height: 200px; /* 加高输入框，提升体验 */
     padding: 1rem;
     border: 2px solid var(--border-color);
     border-radius: 8px;
-    resize: none;
+    resize: vertical; /* 允许垂直拉伸 */
     font-family: inherit;
     font-size: 0.95rem;
     transition: border-color 0.3s;
@@ -525,7 +527,7 @@ body {
 
 .file-upload {
     position: relative;
-    min-height: 150px;
+    min-height: 180px; /* 加高上传区域 */
 }
 
 #pdfUpload {
@@ -629,6 +631,11 @@ body {
     margin-bottom: 1rem;
 }
 
+#AI-result-text{
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
 .chat-history {
     flex: 1;
     overflow-y: auto;
@@ -636,13 +643,15 @@ body {
     padding: 1rem;
     background-color: #f8f9fa;
     border-radius: 8px;
+    line-height: 1.8;
 }
 
 .system-message {
     background-color: #e3f2fd;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 8px;
     margin-bottom: 1rem;
+    font-size: 0.95rem;
 }
 
 .user-message {
@@ -661,7 +670,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     margin-bottom: 1rem;
-    max-width: 80%;
+    max-width: 90%
 }
 
 .loading-message {
