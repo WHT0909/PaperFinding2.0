@@ -65,6 +65,10 @@ async function handleAnalyze() {
         }
         
         const data = await response.json();
+
+        console.log('【分析文献】DeepSeek 原始回复：', data.response);
+        console.log('【分析文献】完整返回数据：', data);
+
         addMessage('assistant', data.response);
         conversationHistory.push({ role: 'assistant', content: data.response });
     } catch (error) {
@@ -122,6 +126,39 @@ function handleClear() {
     conversationHistory = [];
 }
 
+// Markdown转HTML的核心函数
+function markdownToHtml(markdown) {
+    if (!markdown) return '';
+    let html = markdown;
+    // 1. 标题处理 (# -> h1, ## -> h2 直到 ### h3，可扩展)
+    html = html.replace(/^#{1} (.*$)/gm, '<h1>$1</h1>');
+    html = html.replace(/^#{2} (.*$)/gm, '<h2>$1</h2>');
+    html = html.replace(/^#{3} (.*$)/gm, '<h3>$1</h3>');
+    // 2. 粗体处理 (** **)
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // 3. 斜体处理 (* *)
+    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    // 4. 链接处理 ([文本](链接))
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+    // 5. 无序列表处理 (- /*)
+    html = html.replace(/^(\s*)- (.*$)/gm, '$1<ul><li>$2</li></ul>');
+    // 合并连续的ul标签
+    html = html.replace(/<\/ul>\s*<ul>/g, '');
+    // 6. 有序列表处理 (1. / 2. )
+    html = html.replace(/^(\s*\d+)\. (.*$)/gm, '$1<ol><li>$2</li></ol>');
+    // 合并连续的ol标签
+    html = html.replace(/<\/ol>\s*<ol>/g, '');
+    // 7. 代码块处理 (``` ```)
+    html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+    // 8. 行内代码处理 (` `)
+    html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+    // 9. 换行处理
+    html = html.replace(/\n/g, '<br>');
+    // 10. 引用处理 (> )
+    html = html.replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>');
+    return html;
+}
+
 // 添加消息到聊天历史
 function addMessage(role, content) {
     const chatHistory = document.getElementById('chatHistory');
@@ -130,7 +167,13 @@ function addMessage(role, content) {
     
     const messageContent = document.createElement('div');
     messageContent.className = 'message-content';
-    messageContent.textContent = content;
+
+    // 区分角色：助手消息解析Markdown，用户消息纯文本
+    if (role === 'assistant') {
+        messageContent.innerHTML = markdownToHtml(content);
+    } else {
+        messageContent.textContent = content;
+    }
     
     messageDiv.appendChild(messageContent);
     chatHistory.appendChild(messageDiv);

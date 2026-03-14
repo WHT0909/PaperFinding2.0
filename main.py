@@ -14,7 +14,7 @@ import PyPDF2
 import io
 
 Entrez.email = PUBMED_EMAIL
-API_KEY = PUBMED_API_KEY if PUBMED_API_KEY else None
+# API_KEY = PUBMED_API_KEY if PUBMED_API_KEY else None
 
 # 初始化DeepSeek模型
 if DEEPSEEK_API_KEY:
@@ -65,7 +65,7 @@ def search_pubmed(query: str, start: int = 0, max_results: int = 10) -> SearchRe
             retstart=start,
             sort="relevance",
             retmode="xml",
-            api_key=API_KEY
+            api_key=PUBMED_API_KEY
         )
         
         record = Entrez.read(handle)
@@ -99,7 +99,7 @@ def fetch_details_xml(pmids: List[str]) -> List[Article]:
             id=",".join(pmids),
             rettype="xml",
             retmode="xml",
-            api_key=API_KEY
+            api_key=PUBMED_API_KEY
         )
         
         records = Entrez.read(handle)
