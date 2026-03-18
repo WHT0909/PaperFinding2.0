@@ -165,6 +165,15 @@ body {
     align-items: flex-start;
 }
 
+
+.filter-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 240px;
+    flex-shrink: 0;
+}
+
 .filter-sidebar {
     width: 200px;
     height: 230px;
@@ -188,13 +197,13 @@ body {
     border-bottom: 2px solid var(--border-color);
 }
 
-.date-filter-options {
+.filter-options {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
 
-.date-option {
+.user-option {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -204,18 +213,18 @@ body {
     transition: background-color 0.2s;
 }
 
-.date-option:hover {
+.user-option:hover {
     background-color: var(--background-color);
 }
 
-.date-option input[type="radio"] {
+.user-option input[type="radio"] {
     width: 16px;
     height: 16px;
     cursor: pointer;
     accent-color: var(--primary-color);
 }
 
-.date-option span {
+.user-option span {
     font-size: 0.95rem;
     color: var(--text-secondary);
 }
