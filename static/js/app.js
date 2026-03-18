@@ -3,6 +3,7 @@ let currentPage = 1;
 let currentQuery = '';
 let totalPages = 1;
 let currentYearFilter = 'all';
+let currentPerPage = 10;
 let allArticles = [];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,12 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    const paperNumFilterRadios = document.querySelectorAll('input[name="paperNumFilter"]');
+    paperNumFilterRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            currentPerPage = parseInt(e.target.value);
+            if (currentQuery) {
+                currentPage = 1;
+                performSearch(currentQuery, currentPage, currentPerPage);
+            }
+        });
+    });
+    
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
     if (query) {
         searchInput.value = query;
         currentQuery = query;
-        performSearch(query, 1);
+        performSearch(query, 1, currentPerPage);
     }
 });
 
@@ -41,10 +53,10 @@ function handleSearch() {
     }
     currentQuery = query;
     currentPage = 1;
-    performSearch(query, currentPage);
+    performSearch(query, currentPage, currentPerPage);
 }
 
-async function performSearch(query, page) {
+async function performSearch(query, page, perPage = 10) {
     const resultsSection = document.getElementById('resultsSection');
     const resultsList = document.getElementById('resultsList');
     const loading = document.getElementById('loading');
@@ -59,7 +71,7 @@ async function performSearch(query, page) {
     pagination.innerHTML = '';
     
     try {
-        const response = await fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}&page=${page}&per_page=10`);
+        const response = await fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}&page=${page}&per_page=${perPage}`);
         
         if (!response.ok) {
             throw new Error('搜索请求失败');
@@ -70,7 +82,7 @@ async function performSearch(query, page) {
         
         if (data.articles && data.articles.length > 0) {
             resultCount.textContent = `共找到 ${data.total_count} 篇文献`;
-            totalPages = Math.ceil(data.total_count / 10);
+            totalPages = Math.ceil(data.total_count / perPage);
             
             allArticles = data.articles;
             filterArticlesByDate();
@@ -181,7 +193,7 @@ function renderPagination(currentPage, totalPages) {
         const prevBtn = document.createElement('button');
         prevBtn.textContent = '上一页';
         prevBtn.addEventListener('click', () => {
-            performSearch(currentQuery, currentPage - 1);
+            performSearch(currentQuery, currentPage - 1, currentPerPage);
         });
         pagination.appendChild(prevBtn);
     }
@@ -193,7 +205,7 @@ function renderPagination(currentPage, totalPages) {
             pageBtn.classList.add('active');
         }
         pageBtn.addEventListener('click', () => {
-            performSearch(currentQuery, i);
+            performSearch(currentQuery, i, currentPerPage);
         });
         pagination.appendChild(pageBtn);
     }
@@ -202,7 +214,7 @@ function renderPagination(currentPage, totalPages) {
         const nextBtn = document.createElement('button');
         nextBtn.textContent = '下一页';
         nextBtn.addEventListener('click', () => {
-            performSearch(currentQuery, currentPage + 1);
+            performSearch(currentQuery, currentPage + 1, currentPerPage);
         });
         pagination.appendChild(nextBtn);
     }
