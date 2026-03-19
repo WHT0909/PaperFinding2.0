@@ -1057,16 +1057,16 @@ body {
     gap: 2rem;
     align-items: flex-start;
     position: relative;
-    padding-left: 300px;
 }
 
 .toc-sidebar {
     width: 280px;
     flex-shrink: 0;
-    position: absolute;
+    position: sticky;
+    top: 80px;
     left: 2rem;
-    top: 0;
     transition: transform 0.3s ease-out;
+    z-index: 100;
 }
 
 .toc-card {
@@ -1112,7 +1112,7 @@ body {
     border-radius: 8px;
     transition: all 0.3s ease;
     font-size: 0.95rem;
-    line-height: 1.4;
+    line-height: 1.0;
 }
 
 .toc-link:hover {
@@ -1141,7 +1141,6 @@ body {
 @media (max-width: 1024px) {
     .about-container {
         flex-direction: column;
-        padding-left: 0;
     }
     
     .toc-sidebar {
@@ -1149,6 +1148,7 @@ body {
         position: static;
         left: 0;
         top: 0;
+        margin-bottom: 1rem;
     }
     
     .toc-card {

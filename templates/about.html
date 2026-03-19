@@ -26,11 +26,12 @@
                     <nav class="toc-nav">
                         <ul class="toc-list">
                             <li><a href="#what-is" class="toc-link active">什么是 BioPapers？</a></li>
-                            <li><a href="#comparison" class="toc-link">和 PaperFinding 相比</a></li>
+                            <li><a href="#comparison" class="toc-link">版本改进</a></li>
                             <li><a href="#features" class="toc-link">基本功能</a></li>
                             <li><a href="#usage" class="toc-link">使用说明</a></li>
                             <li><a href="#tech" class="toc-link">技术细节</a></li>
                             <li><a href="#notes" class="toc-link">注意事项</a></li>
+                            <li><a href="#deployment" class="toc-link">本地部署</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -98,6 +99,23 @@
                         - 如需获取全文，请通过 DOI 链接访问原文<br/>
                     </p>
                 </div>
+
+                <div class="about-section-item" id="deployment">
+                    <h2 class="section-title">本地部署</h2>
+                    <p class="section-content">
+                        本项目已在 github 上开源，支持本地部署与自定义功能。项目地址在<a href="https://github.com/WHT0909/BioPapers" target="_blank" style="text-decoration:none">https://github.com/WHT0909/BioPapers</a>。用户可通过如下方法部署：<br/>
+                        - 克隆项目<br/>
+                        `git clone https://github.com/WHT0909/BioPapers.git`<br/>
+                        - 创建环境<br/>
+                        `conda create -n BioPapers python=3.11`<br/>
+                        - 安装依赖<br/>
+                        `conda activate BioPapers`<br/>
+                        `pip install -r requirements.txt`<br/>
+                        `pip install "fastapi[standard]"`<br/>
+                        - 运行项目<br/>
+                        `uvicorn main:app --host 0.0.0.0 --port 8000`<br/>
+                    </p>
+                </div>
             </section>
         </div>
     </main>
@@ -150,16 +168,6 @@
             
             window.addEventListener('scroll', function() {
                 setActiveLink();
-                
-                const scrollTop = window.scrollY;
-                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = scrollTop / maxScroll;
-                const maxMove = 200;
-                
-                // 调整跟随滚动的计算，使其更自然
-                const moveAmount = scrollPercent * maxMove;
-                tocSidebar.style.transform = `translateY(${moveAmount}px)`;
-                tocSidebar.style.transition = 'transform 0.1s ease-out';
             });
             
             setActiveLink();
